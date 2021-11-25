@@ -9,8 +9,9 @@ table {
     font-weight: bold;
 }
 
-h1 {
+th {
     padding: 10px;
+    font-size: 2rem;
 }
 
 tr,
