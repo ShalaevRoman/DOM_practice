@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+table {
+    background-color: beige;
+    border-collapse: collapse;
+    text-align: center;
+    font-weight: bold;
+}
+
+h1 {
+    padding: 10px;
+}
+
+tr,
+td {
+    display: inline-block;
+}
+
+td {
+    width: 150px;
+    height: 170px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid grey;
+    vertical-align: middle;
+    border-radius: 10px;
+}
+
+td:hover {
+    background-color: indianred;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+form {
+    padding-top: 5px;
+}
+
+textarea {
+    background-color: lightseagreen;
+}
+
+textarea::placeholder {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    opacity: 1;
+}
