@@ -22,8 +22,8 @@ class Action {
 
             const form = item.children.form;
             form.hidden = false;
-            form.children.textarea.innerHTML = item.firstChild.innerHTML;
-
+            form.children.textarea.innerText = item.firstChild.innerHTML;
+            this.setCaretToPos(form.children.textarea, item.firstChild.innerText.length)
             this.checkDataset(e.target.dataset.action, item, form);
         });
     };
@@ -32,13 +32,34 @@ class Action {
         switch (dataset) {
             case this.target.save:
                 td.firstChild.innerHTML = form.firstElementChild.value;
+                form.firstElementChild.value = '';
                 form.hidden = true;
                 break;
             case this.target.cancel:
                 form.hidden = true;
+                form.firstElementChild.value = '';
+                break;
         }
     }
-}
+
+    setSelectionRange(input, selectionStart, selectionEnd) {
+        if (input.setSelectionRange) {
+            input.focus();
+            input.setSelectionRange(selectionStart, selectionEnd);
+        } else if (input.createTextRange) {
+            var range = input.createTextRange();
+            range.collapse(true);
+            range.moveEnd('character', selectionEnd);
+            range.moveStart('character', selectionStart);
+            range.select();
+        }
+    }
+
+    setCaretToPos(input, pos) {
+        this.setSelectionRange(input, pos, pos);
+    }
+
+};
 
 const tableAction = new Action("click", table, { td: "td", save: "save", cancel: "cancel" });
 tableAction.addEvent();
