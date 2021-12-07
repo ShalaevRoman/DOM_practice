@@ -20,7 +20,8 @@ class Action {
             const item = e.target.closest(this.target.td);
             if (!item) return;
 
-            const form = item.children.form;
+            const form = item.children[1];
+            console.dir(e.target)
             form.hidden = false;
             form.children.textarea.innerText = item.firstChild.innerHTML;
             this.setCaretToPos(form.children.textarea, item.firstChild.innerText.length)
@@ -32,12 +33,12 @@ class Action {
         switch (dataset) {
             case this.target.save:
                 td.firstChild.innerHTML = form.firstElementChild.value;
-                form.firstElementChild.value = '';
+                // form.firstElementChild.value = '';
                 form.hidden = true;
                 break;
             case this.target.cancel:
                 form.hidden = true;
-                form.firstElementChild.value = '';
+                // form.firstElementChild.value = '';
                 break;
         }
     }
